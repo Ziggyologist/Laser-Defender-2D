@@ -21,16 +21,22 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemiesWaves()
     {
-        foreach (WavesConfigSO wave in waveConfigs)
+        bool isLooping = true;
+        do
         {
-            currentWave = wave;
-            for (int i = 0; i < currentWave.GetEnemyCount(); i++)
+            foreach (WavesConfigSO wave in waveConfigs)
             {
-                Instantiate(currentWave.GetEnemyPrefab(i), currentWave.GetStartingWaypoint().position, Quaternion.identity, transform);
-                yield return new WaitForSeconds(currentWave.GetRandomSpawnTime());
+                currentWave = wave;
+                for (int i = 0; i < currentWave.GetEnemyCount(); i++)
+                {
+                    Instantiate(currentWave.GetEnemyPrefab(i), currentWave.GetStartingWaypoint().position, Quaternion.identity, transform);
+                    yield return new WaitForSeconds(currentWave.GetRandomSpawnTime());
+                }
+                //isLooping = false;
+                yield return new WaitForSeconds(timeBetweenWaves);
             }
-            yield return new WaitForSeconds(timeBetweenWaves);
         }
+        while (isLooping == true);
 
     }
 }

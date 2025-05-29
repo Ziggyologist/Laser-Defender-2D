@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3420822351554170133}
   - component: {fileID: 331033158151989460}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: playerShip3_red_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -8613746428151470745, guid: 27859ac87e6987e45b067e15309232c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 3459649014899648034}
   - component: {fileID: 7666358768931815993}
   - component: {fileID: 831330901575978271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,3 +298,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3edfbd7ebd83b469ec54f7b3cedd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100

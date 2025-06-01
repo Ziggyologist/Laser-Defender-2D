@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4521262026311394846}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2579118185044293911}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &1733360806068737905
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 1640611591209722669}
   - component: {fileID: 2696186012434717404}
   - component: {fileID: -7744424835448194462}
+  - component: {fileID: 2639441142761834224}
   m_Layer: 7
   m_Name: Enemy 0
   m_TagString: Untagged
@@ -211,7 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3edfbd7ebd83b469ec54f7b3cedd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 30
+  hitEffect: {fileID: 1882980107342514215, guid: fda2e9f4dc440de4a809e78e05c0d8e0, type: 3}
 --- !u!114 &-7744424835448194462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,3 +227,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
+--- !u!114 &2639441142761834224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5227686478887741482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5439a96e234622b4195fd255be3e4775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 3435160927934129946, guid: 0ce637264a611b34ebdfd449a85ee143, type: 3}
+  projectileSpeed: 10
+  projectileLifetime: 5
+  baseFiringRate: 1
+  firingRateVariance: 0.3
+  minimumFiringRate: 0.1
+  useAI: 1
+  isFiring: 0

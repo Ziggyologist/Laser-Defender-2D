@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
     AudioPlayer audioplayer; 
     SpriteRenderer sr;
     int hitCount = 0;
-    private readonly Color[] hitColors = new Color[]
+    readonly Color[] hitColors = new Color[]
 {
         new Color32(0xFF, 0xFF, 0xFF, 0xFF), // White
         new Color32(0xDB, 0xB9, 0xB9, 0xFF), // #DBB9B9

@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] bool isPlayer;
     [SerializeField] int health = 50;
+    [SerializeField] int scoreValue = 100;
     [SerializeField] ParticleSystem hitEffect;
-
     [SerializeField] bool applyCameraShake;
-    CameraShake cameraShake;
 
+    CameraShake cameraShake;
+    ScoreKeeper scoreKeeper;
     AudioPlayer audioplayer; 
     SpriteRenderer sr;
     int hitCount = 0;
@@ -26,6 +28,7 @@ public class Health : MonoBehaviour
     {
         cameraShake = Camera.main.GetComponent<CameraShake>();
         audioplayer = FindFirstObjectByType<AudioPlayer>();
+        scoreKeeper = FindFirstObjectByType<ScoreKeeper>();
         sr = GetComponentInChildren<SpriteRenderer>();
         sr.color = hitColors[0]; // Start white
     }
@@ -45,6 +48,10 @@ public class Health : MonoBehaviour
 
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
     void ShakeCamera()
     {
         if (cameraShake != null && applyCameraShake)
@@ -60,15 +67,27 @@ public class Health : MonoBehaviour
         if (collision.GetComponentInChildren<SpriteRenderer>().name == "laserRed01_0" && health > 0)
         {
 
-            Debug.Log("Hit by the player");
+            //Debug.Log("Hit by the player");
             hitCount = Mathf.Clamp(hitCount + 1, 0, hitColors.Length - 1);
+            scoreKeeper.ModifyScore(1);
             sr.color = hitColors[hitCount];
+            Debug.Log(scoreKeeper.Score);
         }
         if (health <= 0)
         {
-            audioplayer.PlayExplosionClip();
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        audioplayer.PlayExplosionClip();
+        if(!isPlayer)
+        {
+            scoreKeeper.ModifyScore(scoreValue);
+        }
+        Debug.Log(scoreKeeper.Score);
+        Destroy(gameObject);
     }
 
     void PlayHitEffect()

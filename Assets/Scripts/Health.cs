@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     ScoreKeeper scoreKeeper;
     AudioPlayer audioplayer; 
     SpriteRenderer sr;
+    LevelManager levelManager;
     int hitCount = 0;
     readonly Color[] hitColors = new Color[]
 {
@@ -30,6 +31,7 @@ public class Health : MonoBehaviour
         audioplayer = FindFirstObjectByType<AudioPlayer>();
         scoreKeeper = FindFirstObjectByType<ScoreKeeper>();
         sr = GetComponentInChildren<SpriteRenderer>();
+        levelManager = FindFirstObjectByType<LevelManager>();
         sr.color = hitColors[0]; // Start white
     }
 
@@ -82,11 +84,14 @@ public class Health : MonoBehaviour
     private void Die()
     {
         audioplayer.PlayExplosionClip();
-        if(!isPlayer)
+        if (!isPlayer)
         {
             scoreKeeper.ModifyScore(scoreValue);
         }
-        Debug.Log(scoreKeeper.Score);
+        else 
+        {
+            levelManager.LoadGameOver();
+        }
         Destroy(gameObject);
     }
 

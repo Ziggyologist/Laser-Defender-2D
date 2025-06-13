@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
@@ -9,6 +10,30 @@ public class AudioPlayer : MonoBehaviour
     [Header("Explosion")]
     [SerializeField] AudioClip explosionClip;
     [SerializeField][Range(0f, 1f)] float explosionVolume = 0.8f;
+
+    static AudioPlayer instance; //singleton
+
+    private void Awake()
+    {
+        ManageSingleton();
+    }
+
+    private void ManageSingleton()
+    {
+        //int instanceCount = FindObjectsByType(GetType(), FindObjectsSortMode.None).Length;
+        //if(instanceCount > 1) //alternative to the singleton pattern
+        if (instance !=null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+    }
 
     public void PlayShootingClip()
     {
